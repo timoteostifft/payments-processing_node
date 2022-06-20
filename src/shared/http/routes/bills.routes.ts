@@ -6,6 +6,6 @@ const billsRoutes = Router();
 
 const validateBillController = new ValidateBillController();
 
-billsRoutes.get('/:bill_number', validateBillController.handle);
+billsRoutes.get('/:digitable_line', validateBillController.handle);
 
 export { billsRoutes };

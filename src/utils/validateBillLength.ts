@@ -1,5 +1,5 @@
-export const validateBillLength = (bill_number: string) => {
-  if (bill_number.length !== 47 && bill_number.length !== 48) {
+export const validateDigitableLineLength = (digitable_line: string) => {
+  if (digitable_line.length !== 47 && digitable_line.length !== 48) {
     return false;
   }
   return true;

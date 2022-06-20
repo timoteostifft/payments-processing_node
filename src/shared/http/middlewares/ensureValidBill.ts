@@ -1,21 +1,21 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { validateBillLength } from '../../../utils/validateBillLength';
+import { validateDigitableLineLength } from '../../../utils/validateBillLength';
 import { AppError } from '../../errors/AppError';
 
 export async function ensureValidBill(request: Request, response: Response, next: NextFunction) {
-  const { bill_number } = request.params;
+  const { digitable_line } = request.params;
 
-  const isBillLengthValid = validateBillLength(bill_number);
+  const isBillLengthValid = validateDigitableLineLength(digitable_line);
 
   if (!isBillLengthValid) {
-    throw new AppError('Invalid bill number length!');
+    throw new AppError('Invalid bill digitable line length!');
   }
 
-  const isBillFormatValid = /^\d+$/.test(bill_number);
+  const isBillFormatValid = /^\d+$/.test(digitable_line);
 
   if (!isBillFormatValid) {
-    throw new AppError('The bill number must only contains digits!');
+    throw new AppError('The bill digitable line must contain only digits!');
   }
 
   return next();
