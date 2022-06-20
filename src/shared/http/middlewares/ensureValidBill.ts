@@ -18,5 +18,10 @@ export async function ensureValidBill(request: Request, response: Response, next
     throw new AppError('The bill digitable line must contain only digits!');
   }
 
+  request.bill = {
+    digitable_line,
+    type: digitable_line.length === 47 ? 'bank' : 'dealership',
+  };
+
   return next();
 }
