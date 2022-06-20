@@ -23,6 +23,7 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
+    "no-return-assign": "off",
     "camelcase": "off",
     "linebreak-style": 0,
     "import/no-unresolved": "error",
