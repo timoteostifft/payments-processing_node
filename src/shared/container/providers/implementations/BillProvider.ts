@@ -57,8 +57,17 @@ class BillProvider implements IBillProvider {
 
   getAmount(digitable_line: string): string {
     const amount = digitable_line.slice(37);
-    console.log(amount);
     return amount;
+  }
+
+  getExpirationDate(digitable_line: string): Date | null {
+    const expirationFactor = digitable_line.slice(33, 37);
+    const expirationDate = new Date(2000, 6, 3);
+
+    const totalDays = parseInt(expirationFactor, 10) - 1000;
+    expirationDate.setDate(expirationDate.getDate() + totalDays);
+
+    return expirationDate;
   }
 }
 
