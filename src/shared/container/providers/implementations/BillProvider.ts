@@ -28,26 +28,26 @@ class BillProvider implements IBillProvider {
   getBarCode(digitable_line: string, type: string): string {
     if (type === 'bank') {
       const barCode = ''
-      .concat(digitable_line.slice(0, 4))
-      .concat(digitable_line[32])
-      .concat(digitable_line.slice(33))
-      .concat(digitable_line.slice(4, 9))
-      .concat(digitable_line.slice(10, 20))
-      .concat(digitable_line.slice(21, 31));
+        .concat(digitable_line.slice(0, 4))
+        .concat(digitable_line[32])
+        .concat(digitable_line.slice(33))
+        .concat(digitable_line.slice(4, 9))
+        .concat(digitable_line.slice(10, 20))
+        .concat(digitable_line.slice(21, 31));
 
-      return barCode
+      return barCode;
     }
 
     const barCode = ''
       .concat(digitable_line.slice(0, 11))
       .concat(digitable_line.slice(12, 23))
       .concat(digitable_line.slice(24, 35))
-      .concat(digitable_line.slice(36, 47))
+      .concat(digitable_line.slice(36, 47));
 
     return barCode;
   }
 
-  validateBarCode(barCode: string,): boolean {
+  validateBarCode(barCode: string): boolean {
     const verifyingDigit = parseInt(barCode[4], 10);
     const verifyingBarCode = (barCode.slice(0, 4) + barCode.slice(5)).split('').reverse();
 
