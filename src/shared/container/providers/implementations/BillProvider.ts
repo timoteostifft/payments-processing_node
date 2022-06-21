@@ -54,6 +54,12 @@ class BillProvider implements IBillProvider {
     const verifiedDigit = 11 - (sum % 11);
     return verifiedDigit === verifyingDigit;
   }
+
+  getAmount(digitable_line: string): string {
+    const amount = digitable_line.slice(37);
+    console.log(amount);
+    return amount;
+  }
 }
 
 export { BillProvider };
