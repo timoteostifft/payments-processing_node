@@ -1,3 +1,5 @@
+import { getBankBarCode } from '../../../../library/getBankBarCode';
+import { getDealershipBarCode } from '../../../../library/getDealershipBarCode';
 import { reduceField } from '../../../../library/reduceField';
 import { IBillProvider } from '../IBillProvider';
 
@@ -12,26 +14,18 @@ class BillProvider implements IBillProvider {
     return verifiedDigit === verifyingDigit;
   }
 
-  getBarCode(digitable_line: string, type: string): string {
+  getBarCode(digitable_line: string, type: string): string | null {
     if (type === 'bank') {
-      const barCode = ''
-        .concat(digitable_line.slice(0, 4))
-        .concat(digitable_line[32])
-        .concat(digitable_line.slice(33))
-        .concat(digitable_line.slice(4, 9))
-        .concat(digitable_line.slice(10, 20))
-        .concat(digitable_line.slice(21, 31));
-
+      const barCode = getBankBarCode(digitable_line);
       return barCode;
     }
 
-    const barCode = ''
-      .concat(digitable_line.slice(0, 11))
-      .concat(digitable_line.slice(12, 23))
-      .concat(digitable_line.slice(24, 35))
-      .concat(digitable_line.slice(36, 47));
+    if (type === 'dealership') {
+      const barCode = getDealershipBarCode(digitable_line);
+      return barCode;
+    }
 
-    return barCode;
+    return null;
   }
 
   validateBarCode(barCode: string, type: string): boolean {
