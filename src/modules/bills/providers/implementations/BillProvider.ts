@@ -65,14 +65,18 @@ class BillProvider implements IBillProvider {
     return amount;
   }
 
-  getExpirationDate(digitable_line: string): Date | null {
-    const expirationFactor = digitable_line.slice(33, 37);
-    const expirationDate = new Date(2000, 6, 3);
+  getExpirationDate(digitable_line: string, type: string): Date | null {
+    if (type === 'bank') {
+      const expirationFactor = digitable_line.slice(33, 37);
+      const expirationDate = new Date(2000, 6, 3);
 
-    const totalDays = parseInt(expirationFactor, 10) - 1000;
-    expirationDate.setDate(expirationDate.getDate() + totalDays);
+      const totalDays = parseInt(expirationFactor, 10) - 1000;
+      expirationDate.setDate(expirationDate.getDate() + totalDays);
 
-    return expirationDate;
+      return expirationDate;
+    }
+
+    return null;
   }
 }
 
