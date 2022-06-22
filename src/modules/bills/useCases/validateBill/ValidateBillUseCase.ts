@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 
-import { IBillProvider } from '../../providers/IBillProvider';
 import { AppError } from '../../../../shared/errors/AppError';
 import { formatAmount } from '../../../../utils/formatAmount';
 import { formatDate } from '../../../../utils/formatDate';
+import { IBillProvider } from '../../providers/IBillProvider';
 
 interface IRequest {
   digitable_line: string;
