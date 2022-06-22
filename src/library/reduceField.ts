@@ -1,4 +1,4 @@
-import { reduceDigit } from '../utils/reduceDigit';
+import { reduceDigit } from './reduceDigit';
 
 export const reduceField = (field: string[]): number => {
   const reducedFieldSum = field.reduce((total, value, index) => {
