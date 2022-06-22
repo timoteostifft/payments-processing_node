@@ -13,18 +13,14 @@ class BillProvider implements IBillProvider {
     return verifiedDigit === verifyingDigit;
   }
 
-  getBarCode(digitable_line: string, type: string): string | null {
+  getBarCode(digitable_line: string, type: string): string {
     if (type === 'bank') {
       const barCode = getBankBarCode(digitable_line);
       return barCode;
     }
 
-    if (type === 'dealership') {
-      const barCode = getDealershipBarCode(digitable_line);
-      return barCode;
-    }
-
-    return null;
+    const barCode = getDealershipBarCode(digitable_line);
+    return barCode;
   }
 
   validateBarCode(barCode: string, type: string): boolean | null {
