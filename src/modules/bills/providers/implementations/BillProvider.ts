@@ -74,8 +74,12 @@ class BillProvider implements IBillProvider {
     return isBarCodeValid;
   }
 
-  getAmount(digitable_line: string): string {
-    const amount = digitable_line.slice(37);
+  getAmount(digitable_line: string, type: string): string {
+    if (type === 'bank') {
+      const amount = digitable_line.slice(37);
+      return amount;
+    }
+    const amount = digitable_line.slice(4, 11) + digitable_line.slice(12, 16);
     return amount;
   }
 
