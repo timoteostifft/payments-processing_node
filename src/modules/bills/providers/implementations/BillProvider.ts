@@ -5,8 +5,7 @@ import { IBillProvider } from '../IBillProvider';
 
 class BillProvider implements IBillProvider {
   validateField(field: string, verifyingDigit: number): boolean {
-    const fieldArray = field.split('');
-    fieldArray.reverse();
+    const fieldArray = field.split('').reverse();
 
     const sum = reduceField(fieldArray);
 
@@ -28,7 +27,7 @@ class BillProvider implements IBillProvider {
     return null;
   }
 
-  validateBarCode(barCode: string, type: string): boolean {
+  validateBarCode(barCode: string, type: string): boolean | null {
     if (type === 'bank') {
       const verifyingDigit = parseInt(barCode[4], 10);
       const verifyingBarCode = (barCode.slice(0, 4) + barCode.slice(5)).split('').reverse();
@@ -48,11 +47,17 @@ class BillProvider implements IBillProvider {
       return verifiedDigit === verifyingDigit;
     }
 
-    const verifyingBarCode = (barCode.slice(0, 3) + barCode.slice(4));
-    const verifyingDigit = parseInt(barCode[3], 10);
+    if (type === 'dealership') {
+      const verifyingBarCode = (barCode.slice(0, 3) + barCode.slice(4)).split('').reverse();
+      const verifyingDigit = parseInt(barCode[3], 10);
 
-    const isBarCodeValid = this.validateField(verifyingBarCode, verifyingDigit);
-    return isBarCodeValid;
+      const sum = reduceField(verifyingBarCode);
+
+      const verifiedDigit = 10 - (sum % 10);
+      return verifiedDigit === verifyingDigit;
+    }
+
+    return null;
   }
 
   getAmount(digitable_line: string, type: string): string {
