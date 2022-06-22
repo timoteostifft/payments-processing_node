@@ -47,23 +47,31 @@ class BillProvider implements IBillProvider {
     return barCode;
   }
 
-  validateBarCode(barCode: string): boolean {
-    const verifyingDigit = parseInt(barCode[4], 10);
-    const verifyingBarCode = (barCode.slice(0, 4) + barCode.slice(5)).split('').reverse();
+  validateBarCode(barCode: string, type: string): boolean {
+    if (type === 'bank') {
+      const verifyingDigit = parseInt(barCode[4], 10);
+      const verifyingBarCode = (barCode.slice(0, 4) + barCode.slice(5)).split('').reverse();
 
-    let multiplier = 1;
+      let multiplier = 1;
 
-    const sum = verifyingBarCode.reduce((total, value) => {
-      const digit = parseInt(value, 10);
-      multiplier += 1;
-      if (multiplier > 9) {
-        multiplier = 2;
-      }
-      return total + (digit * multiplier);
-    }, 0);
+      const sum = verifyingBarCode.reduce((total, value) => {
+        const digit = parseInt(value, 10);
+        multiplier += 1;
+        if (multiplier > 9) {
+          multiplier = 2;
+        }
+        return total + (digit * multiplier);
+      }, 0);
 
-    const verifiedDigit = 11 - (sum % 11);
-    return verifiedDigit === verifyingDigit;
+      const verifiedDigit = 11 - (sum % 11);
+      return verifiedDigit === verifyingDigit;
+    }
+
+    const verifyingBarCode = (barCode.slice(0, 3) + barCode.slice(4));
+    const verifyingDigit = parseInt(barCode[3], 10);
+
+    const isBarCodeValid = this.validateField(verifyingBarCode, verifyingDigit);
+    return isBarCodeValid;
   }
 
   getAmount(digitable_line: string): string {
