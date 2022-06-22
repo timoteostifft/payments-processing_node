@@ -1,6 +1,7 @@
 export const formatDate = (date: Date | null): string | null => {
   if (date) {
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDay()}`;
+    console.log(date);
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
   return null;
 };
