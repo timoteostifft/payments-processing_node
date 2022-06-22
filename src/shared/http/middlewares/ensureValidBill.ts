@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { validateDigitableLineLength } from '../../../utils/validateBillLength';
+import { validateDigitableLineLength } from '../../../library/validateBillLength';
 import { AppError } from '../../errors/AppError';
 
 export async function ensureValidBill(request: Request, response: Response, next: NextFunction) {
