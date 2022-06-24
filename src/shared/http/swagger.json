@@ -1,0 +1,58 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Payment Slip Validator",
+    "version": "1.0.0",
+    "contact": {
+      "email": "timoteostifft@gmail.com"
+    }
+  },
+  "paths": {
+    "/boleto/{digitable_line}": {
+      "get": {
+        "tags": [
+          "bill"
+        ],
+        "summary": "Validate bill digitable line",
+        "description": "Validates a bill digitable line and returns it bar code, expiration date and value",
+        "parameters": [
+          {
+            "name": "digitable_line",
+            "in": "path",
+            "description": "Digitable Line",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Linha digitável valida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "barCode": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "string"
+                    },
+                    "expirationDate": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Linha digitável invalida"
+          }
+        }
+      }
+    }
+  }
+}
