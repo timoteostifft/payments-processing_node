@@ -11,7 +11,7 @@ class ValidateBillController {
 
     const info = await validateBillUseCase.execute({ digitable_line, type });
 
-    return response.status(201).send(info);
+    return response.status(200).send(info);
   }
 }
 
