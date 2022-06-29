@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Payment Slip Validator",
+    "title": "Ewally Node | Bill Digitable Line Validator",
     "version": "1.0.0",
     "contact": {
       "email": "timoteostifft@gmail.com"
