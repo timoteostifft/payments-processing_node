@@ -1,5 +1,5 @@
 <h1 align="center">
-  Ewally Node
+  Payments processing Node
 </h1>
 
 <p align="center">
